@@ -12,7 +12,6 @@
 		53E587382B235E9000E4EF99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53E587372B235E9000E4EF99 /* Preview Assets.xcassets */; };
 		53E5873A2B235E9000E4EF99 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587392B235E9000E4EF99 /* Persistence.swift */; };
 		53E5873D2B235E9000E4EF99 /* Arista.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 53E5873B2B235E9000E4EF99 /* Arista.xcdatamodeld */; };
-		53E587472B235E9000E4EF99 /* AristaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587462B235E9000E4EF99 /* AristaTests.swift */; };
 		53E587512B235E9000E4EF99 /* AristaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587502B235E9000E4EF99 /* AristaUITests.swift */; };
 		53E587532B235E9000E4EF99 /* AristaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587522B235E9000E4EF99 /* AristaUITestsLaunchTests.swift */; };
 		53E587632B235FF600E4EF99 /* UserDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E587622B235FF600E4EF99 /* UserDataView.swift */; };
@@ -28,6 +27,15 @@
 		BB169B8A306CF93F00763EE1 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B89306CF93F00763EE1 /* ExerciseRepository.swift */; };
 		BB169B8C306CF94500763EE1 /* DefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B8B306CF94500763EE1 /* DefaultData.swift */; };
 		BB169B8E306CFA4400763EE1 /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B8D306CFA4400763EE1 /* ErrorAlert.swift */; };
+		BB169B90306CFFB400763EE1 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B8F306CFFB400763EE1 /* TestData.swift */; };
+		BB169B92306CFFB700763EE1 /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B91306CFFB700763EE1 /* UserRepositoryTests.swift */; };
+		BB169B94306CFFBC00763EE1 /* SleepRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B93306CFFBC00763EE1 /* SleepRepositoryTests.swift */; };
+		BB169B96306CFFC600763EE1 /* ExerciseRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B95306CFFC600763EE1 /* ExerciseRepositoryTests.swift */; };
+		BB169B98306CFFCE00763EE1 /* DefaultDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B97306CFFCE00763EE1 /* DefaultDataTests.swift */; };
+		BB169B9A306CFFD800763EE1 /* UserDataViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B99306CFFD800763EE1 /* UserDataViewModelTests.swift */; };
+		BB169B9C306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B9B306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift */; };
+		BB169B9E306CFFE600763EE1 /* ExerciseListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B9D306CFFE600763EE1 /* ExerciseListViewModelTests.swift */; };
+		BB169BA0306CFFEC00763EE1 /* AddExerciseViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B9F306CFFEC00763EE1 /* AddExerciseViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +63,6 @@
 		53E587392B235E9000E4EF99 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		53E5873C2B235E9000E4EF99 /* Arista.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Arista.xcdatamodel; sourceTree = "<group>"; };
 		53E587422B235E9000E4EF99 /* AristaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AristaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		53E587462B235E9000E4EF99 /* AristaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaTests.swift; sourceTree = "<group>"; };
 		53E5874C2B235E9000E4EF99 /* AristaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AristaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53E587502B235E9000E4EF99 /* AristaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaUITests.swift; sourceTree = "<group>"; };
 		53E587522B235E9000E4EF99 /* AristaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AristaUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -72,6 +79,15 @@
 		BB169B89306CF93F00763EE1 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
 		BB169B8B306CF94500763EE1 /* DefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultData.swift; sourceTree = "<group>"; };
 		BB169B8D306CFA4400763EE1 /* ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
+		BB169B8F306CFFB400763EE1 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		BB169B91306CFFB700763EE1 /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
+		BB169B93306CFFBC00763EE1 /* SleepRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepositoryTests.swift; sourceTree = "<group>"; };
+		BB169B95306CFFC600763EE1 /* ExerciseRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepositoryTests.swift; sourceTree = "<group>"; };
+		BB169B97306CFFCE00763EE1 /* DefaultDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDataTests.swift; sourceTree = "<group>"; };
+		BB169B99306CFFD800763EE1 /* UserDataViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModelTests.swift; sourceTree = "<group>"; };
+		BB169B9B306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModelTests.swift; sourceTree = "<group>"; };
+		BB169B9D306CFFE600763EE1 /* ExerciseListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModelTests.swift; sourceTree = "<group>"; };
+		BB169B9F306CFFEC00763EE1 /* AddExerciseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +161,15 @@
 		53E587452B235E9000E4EF99 /* AristaTests */ = {
 			isa = PBXGroup;
 			children = (
-				53E587462B235E9000E4EF99 /* AristaTests.swift */,
+				BB169B8F306CFFB400763EE1 /* TestData.swift */,
+				BB169B91306CFFB700763EE1 /* UserRepositoryTests.swift */,
+				BB169B93306CFFBC00763EE1 /* SleepRepositoryTests.swift */,
+				BB169B95306CFFC600763EE1 /* ExerciseRepositoryTests.swift */,
+				BB169B97306CFFCE00763EE1 /* DefaultDataTests.swift */,
+				BB169B99306CFFD800763EE1 /* UserDataViewModelTests.swift */,
+				BB169B9B306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift */,
+				BB169B9D306CFFE600763EE1 /* ExerciseListViewModelTests.swift */,
+				BB169B9F306CFFEC00763EE1 /* AddExerciseViewModelTests.swift */,
 			);
 			path = AristaTests;
 			sourceTree = "<group>";
@@ -346,7 +370,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53E587472B235E9000E4EF99 /* AristaTests.swift in Sources */,
+				BB169B94306CFFBC00763EE1 /* SleepRepositoryTests.swift in Sources */,
+				BB169B9E306CFFE600763EE1 /* ExerciseListViewModelTests.swift in Sources */,
+				BB169B9C306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift in Sources */,
+				BB169BA0306CFFEC00763EE1 /* AddExerciseViewModelTests.swift in Sources */,
+				BB169B96306CFFC600763EE1 /* ExerciseRepositoryTests.swift in Sources */,
+				BB169B92306CFFB700763EE1 /* UserRepositoryTests.swift in Sources */,
+				BB169B90306CFFB400763EE1 /* TestData.swift in Sources */,
+				BB169B98306CFFCE00763EE1 /* DefaultDataTests.swift in Sources */,
+				BB169B9A306CFFD800763EE1 /* UserDataViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
