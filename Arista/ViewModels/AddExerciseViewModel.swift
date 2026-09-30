@@ -10,9 +10,11 @@ import CoreData
 
 class AddExerciseViewModel: ObservableObject {
     @Published var category: String = ""
-    @Published var startTime: String = ""
-    @Published var duration: String = ""
-    @Published var intensity: String = ""
+    @Published var startTime: Date = Date()
+    @Published var duration: Int = 0
+    @Published var intensity: Int = 0
+    /// Message à afficher à l'utilisateur si l'enregistrement échoue, `nil` sinon.
+    @Published var errorMessage: String?
 
     private var viewContext: NSManagedObjectContext
 
@@ -20,8 +22,21 @@ class AddExerciseViewModel: ObservableObject {
         self.viewContext = context
     }
 
+    /// Enregistre l'exercice saisi. Retourne `true` si la vue peut se fermer.
     func addExercise() -> Bool {
-        // TODO: Ajouter ici la logique pour créer et sauvegarder un nouvel exercice dans CoreData
-        return true
+        do {
+            try ExerciseRepository(viewContext: viewContext).addExercise(
+                category: category,
+                duration: duration,
+                intensity: intensity,
+                startDate: startTime
+            )
+            return true
+        } catch {
+            // Les erreurs métier (ex. aucun utilisateur) portent leur propre message.
+            errorMessage = (error as? LocalizedError)?.errorDescription
+                ?? "Impossible d'enregistrer l'exercice."
+            return false
+        }
     }
 }

@@ -27,6 +27,7 @@
 		BB169B88306CF93A00763EE1 /* SleepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B87306CF93A00763EE1 /* SleepRepository.swift */; };
 		BB169B8A306CF93F00763EE1 /* ExerciseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B89306CF93F00763EE1 /* ExerciseRepository.swift */; };
 		BB169B8C306CF94500763EE1 /* DefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B8B306CF94500763EE1 /* DefaultData.swift */; };
+		BB169B8E306CFA4400763EE1 /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B8D306CFA4400763EE1 /* ErrorAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		BB169B87306CF93A00763EE1 /* SleepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRepository.swift; sourceTree = "<group>"; };
 		BB169B89306CF93F00763EE1 /* ExerciseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRepository.swift; sourceTree = "<group>"; };
 		BB169B8B306CF94500763EE1 /* DefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultData.swift; sourceTree = "<group>"; };
+		BB169B8D306CFA4400763EE1 /* ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				53E587642B23600400E4EF99 /* ExerciseListView.swift */,
 				53E587662B23600C00E4EF99 /* SleepHistoryView.swift */,
 				53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */,
+				BB169B8D306CFA4400763EE1 /* ErrorAlert.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				53E5876D2B236D9E00E4EF99 /* AddExerciseView.swift in Sources */,
 				53E5876F2B236DBC00E4EF99 /* AddExerciseViewModel.swift in Sources */,
 				53E587692B23616A00E4EF99 /* UserDataViewModel.swift in Sources */,
+				BB169B8E306CFA4400763EE1 /* ErrorAlert.swift in Sources */,
 				BB169B88306CF93A00763EE1 /* SleepRepository.swift in Sources */,
 				BB169B8A306CF93F00763EE1 /* ExerciseRepository.swift in Sources */,
 			);

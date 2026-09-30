@@ -25,6 +25,7 @@ struct UserDataView: View {
             Spacer()
         }
         .edgesIgnoringSafeArea(.all)
+        .errorAlert(message: $viewModel.errorMessage)
     }
 }
 

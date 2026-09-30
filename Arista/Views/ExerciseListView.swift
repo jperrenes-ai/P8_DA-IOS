@@ -13,21 +13,24 @@ struct ExerciseListView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.exercises) { exercise in
-                HStack {
-                    Image(systemName: iconForCategory(exercise.category))
-                    VStack(alignment: .leading) {
-                        Text(exercise.category)
-                            .font(.headline)
-                        Text("Durée: \(exercise.duration) min")
-                            .font(.subheadline)
-                        Text(exercise.date.formatted())
-                            .font(.subheadline)
-                        
+            List {
+                ForEach(viewModel.exercises) { exercise in
+                    HStack {
+                        Image(systemName: iconForCategory(exercise.category ?? ""))
+                        VStack(alignment: .leading) {
+                            Text(exercise.category ?? "")
+                                .font(.headline)
+                            Text("Durée: \(exercise.duration) min")
+                                .font(.subheadline)
+                            Text(exercise.startDate?.formatted() ?? "-")
+                                .font(.subheadline)
+
+                        }
+                        Spacer()
+                        IntensityIndicator(intensity: Int(exercise.intensity))
                     }
-                    Spacer()
-                    IntensityIndicator(intensity: exercise.intensity)
                 }
+                .onDelete(perform: viewModel.deleteExercises)
             }
             .navigationTitle("Exercices")
             .navigationBarItems(trailing: Button(action: {
@@ -36,10 +39,14 @@ struct ExerciseListView: View {
                 Image(systemName: "plus")
             })
         }
-        .sheet(isPresented: $showingAddExerciseView) {
+        // Rejoue la requête à la fermeture du formulaire, sinon le nouvel exercice
+        // n'apparaîtrait qu'au prochain lancement.
+        .sheet(isPresented: $showingAddExerciseView, onDismiss: viewModel.reload) {
             AddExerciseView(viewModel: AddExerciseViewModel(context: viewModel.viewContext))
         }
-        
+        .onAppear(perform: viewModel.reload)
+        .errorAlert(message: $viewModel.errorMessage)
+
     }
     
     func iconForCategory(_ category: String) -> String {

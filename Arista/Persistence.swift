@@ -10,16 +10,16 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
 
+    /// Contrôleur en mémoire alimenté par les données par défaut, destiné aux previews SwiftUI.
+    ///
+    /// L'amorçage est fait explicitement ici, et non dans `init`, pour que les tests
+    /// puissent continuer à construire un contrôleur en mémoire réellement vide.
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
         do {
-            try viewContext.save()
+            try DefaultData(viewContext: result.container.viewContext).apply()
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            assertionFailure("Préparation des données de preview impossible : \(error)")
         }
         return result
     }()
@@ -48,5 +48,18 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+
+        // Les données par défaut ne sont insérées que dans le store sur disque : les tests
+        // construisent un contrôleur en mémoire et doivent partir d'une base vierge pour
+        // rester prédictibles.
+        if !inMemory {
+            do {
+                try DefaultData(viewContext: container.viewContext).apply()
+            } catch {
+                // Un échec ici laisse l'application sans utilisateur : l'interface le signalera.
+                // On le rend bruyant en développement sans faire crasher l'app en production.
+                assertionFailure("Insertion des données par défaut impossible : \(error)")
+            }
+        }
     }
 }

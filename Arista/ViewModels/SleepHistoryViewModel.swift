@@ -9,33 +9,22 @@ import Foundation
 import CoreData
 
 class SleepHistoryViewModel: ObservableObject {
-    @Published var sleepSessions = [FakeSleepSession]()
-    
+    @Published var sleepSessions = [Sleep]()
+    /// Message à afficher à l'utilisateur si la récupération échoue, `nil` sinon.
+    @Published var errorMessage: String?
+
     private var viewContext: NSManagedObjectContext
-    
+
     init(context: NSManagedObjectContext) {
         self.viewContext = context
         fetchSleepSessions()
     }
-    
-    private func fetchSleepSessions() {
-        
-        sleepSessions = [FakeSleepSession(), 
-                         FakeSleepSession(),
-                         FakeSleepSession(),
-                         FakeSleepSession(),
-                         FakeSleepSession(),
-                         FakeSleepSession(),
-                         FakeSleepSession(),
-                         FakeSleepSession(),
-                         FakeSleepSession(),
-                         FakeSleepSession()]
-    }
-}
 
-struct FakeSleepSession: Identifiable {
-    var id = UUID()
-    var startDate: Date = Date()
-    var duration: Int = 695
-    var quality: Int = (0...10).randomElement()!
+    private func fetchSleepSessions() {
+        do {
+            sleepSessions = try SleepRepository(viewContext: viewContext).getSleepSessions()
+        } catch {
+            errorMessage = "Impossible de charger l'historique de sommeil."
+        }
+    }
 }
