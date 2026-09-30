@@ -46,8 +46,8 @@ struct DefaultData {
     private func makeInitialSleepSessions(for user: User) {
         let oneDay: TimeInterval = 60 * 60 * 24
 
-        // Les sessions sont datées dans le passé, la plus ancienne en premier,
-        // pour que l'historique affiché soit cohérent au premier lancement.
+        // Une session par nuit sur les derniers jours (hier, avant-hier…), toujours
+        // dans le passé pour que l'historique affiché soit cohérent au premier lancement.
         for dayOffset in 1...Self.sleepSessionCount {
             let session = Sleep(context: viewContext)
             session.duration = Int64((0...900).randomElement()!)
