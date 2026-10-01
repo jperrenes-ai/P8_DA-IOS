@@ -7,50 +7,63 @@
 
 import SwiftUI
 
+/// Écran « Sommeil » : l'historique des nuits, en lecture seule.
 struct SleepHistoryView: View {
-    @ObservedObject var viewModel: SleepHistoryViewModel
+    @State private var viewModel: SleepHistoryViewModel
 
-        var body: some View {
+    init(viewModel: SleepHistoryViewModel) {
+        _viewModel = State(initialValue: viewModel)
+    }
+
+    var body: some View {
+        // Dans le PoC, cet écran n'était dans aucune barre de navigation : le
+        // `.navigationTitle` était donc ignoré et le titre ne s'affichait pas.
+        NavigationStack {
             List(viewModel.sleepSessions) { session in
-                HStack {
-                    QualityIndicator(quality: Int(session.quality))
-                        .padding()
-                    VStack(alignment: .leading) {
-                        Text("Début : \(session.startDate?.formatted() ?? "-")")
-                        Text("Durée : \(session.duration/60) heures")
-                    }
+                SleepRow(
+                    startDate: session.startDate,
+                    duration: session.duration,
+                    quality: Int(session.quality)
+                )
+            }
+            .overlay {
+                if viewModel.sleepSessions.isEmpty {
+                    ContentUnavailableView(
+                        "Aucune nuit enregistrée",
+                        systemImage: "moon.zzz",
+                        description: Text("Votre historique de sommeil apparaîtra ici.")
+                    )
                 }
             }
-            .navigationTitle("Historique de Sommeil")
-            .errorAlert(message: $viewModel.errorMessage)
+            .navigationTitle("Sommeil")
         }
+        .errorAlert(message: $viewModel.errorMessage)
+    }
 }
 
-struct QualityIndicator: View {
+/// Une ligne de l'historique : la qualité à gauche (comme l'icône dans la liste des exercices),
+/// puis la date et la durée.
+struct SleepRow: View {
+    let startDate: Date?
+    let duration: Int64
     let quality: Int
 
     var body: some View {
-        ZStack {
-            Circle()
-                .stroke(qualityColor(quality), lineWidth: 5)
-                .foregroundColor(qualityColor(quality))
-                .frame(width: 30, height: 30)
-            Text("\(quality)")
-                .foregroundColor(qualityColor(quality))
-        }
-    }
+        HStack(spacing: 12) {
+            QualityIndicator(quality: quality)
 
-    func qualityColor(_ quality: Int) -> Color {
-        switch (10-quality) {
-        case 0...3:
-            return .green
-        case 4...6:
-            return .yellow
-        case 7...10:
-            return .red
-        default:
-            return .gray
+            VStack(alignment: .leading, spacing: 2) {
+                if let startDate {
+                    Text(startDate.formatted(date: .abbreviated, time: .shortened))
+                        .font(.headline)
+                }
+                // « 7 h et 50 min » au lieu de l'ancien « 7 heures » arrondi (voir `formattedDuration`).
+                Text("Durée : \(formattedDuration(minutes: duration))")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
         }
+        .padding(.vertical, 4)
     }
 }
 

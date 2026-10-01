@@ -6,27 +6,44 @@
 //
 
 import Foundation
-
 import CoreData
+import Observation
 
-class ExerciseListViewModel: ObservableObject {
-    @Published var exercises = [Exercise]()
+/// ViewModel de l'écran « Exercices » : il fournit la liste et gère la suppression.
+///
+/// L'ajout, lui, est géré par un autre ViewModel (`AddExerciseViewModel`), propre au formulaire.
+@MainActor
+@Observable
+final class ExerciseListViewModel {
+    /// Les exercices, du plus récent au plus ancien. Ce sont directement les entités CoreData
+    /// `Exercise` (avant, c'était un tableau de `FakeExercise`).
+    var exercises = [Exercise]()
     /// Message à afficher à l'utilisateur si une opération échoue, `nil` sinon.
-    @Published var errorMessage: String?
+    var errorMessage: String?
 
-    var viewContext: NSManagedObjectContext
+    /// Ce contexte n'est pas `private` : la vue en a besoin pour créer le ViewModel du
+    /// formulaire d'ajout, afin que l'exercice soit enregistré dans la même base.
+    @ObservationIgnored let viewContext: NSManagedObjectContext
 
     init(context: NSManagedObjectContext) {
         self.viewContext = context
         fetchExercises()
     }
 
-    /// Rejoue la requête, par exemple après l'ajout d'un exercice depuis une autre vue.
+    /// Rejoue la requête, par exemple après l'ajout d'un exercice depuis le formulaire.
+    ///
+    /// Sans ça, j'avais le problème décrit dans l'énoncé : le nouvel exercice n'apparaissait
+    /// qu'au redémarrage de l'app, car la liste avait été chargée une seule fois, dans l'`init`.
     func reload() {
         fetchExercises()
     }
 
-    /// Supprime les exercices aux positions données, telles que fournies par `onDelete`.
+    /// Supprime les exercices aux positions données.
+    ///
+    /// La signature `(IndexSet)` correspond exactement à ce que fournit le modificateur
+    /// `.onDelete` de SwiftUI : la vue peut donc écrire `.onDelete(perform: viewModel.deleteExercises)`.
+    /// Je recharge la liste à la fin dans tous les cas, pour que l'affichage reflète
+    /// toujours l'état réel de la base, même si la suppression a échoué.
     func deleteExercises(at offsets: IndexSet) {
         let repository = ExerciseRepository(viewContext: viewContext)
         do {

@@ -7,13 +7,18 @@ import Foundation
 import Testing
 @testable import Arista
 
+/// Tests de `DefaultData`, et de la façon dont `PersistenceController` l'utilise.
 @MainActor
 struct DefaultDataTests {
     @Test func apply_onEmptyDatabase_createsTheUserAndFiveSleepSessions() throws {
+        // Given
         let context = TestData.makeContext()
 
+        // When
         try DefaultData(viewContext: context).apply()
 
+        // Then : l'utilisateur de l'énoncé et 5 nuits, toutes rattachées à lui. Les valeurs
+        // étant tirées au hasard, je vérifie seulement qu'elles restent dans les bornes prévues.
         let user = try UserRepository(viewContext: context).getUser()
         let sessions = try SleepRepository(viewContext: context).getSleepSessions()
         #expect(user?.firstName == "Charlotte")
@@ -22,10 +27,13 @@ struct DefaultDataTests {
         #expect(sessions.allSatisfy { $0.user == user })
         #expect(sessions.allSatisfy { (0...900).contains($0.duration) })
         #expect(sessions.allSatisfy { (0...10).contains($0.quality) })
+        // Tout a bien été sauvegardé
         #expect(context.hasChanges == false)
     }
 
     @Test func apply_datesAllSleepSessionsInThePast() throws {
+        // Ce test protège la correction que j'ai faite sur le corrigé, qui datait les nuits
+        // dans le futur.
         let context = TestData.makeContext()
 
         try DefaultData(viewContext: context).apply()
@@ -36,6 +44,7 @@ struct DefaultDataTests {
     }
 
     @Test func apply_calledTwice_doesNotDuplicateData() throws {
+        // C'est ce qui se passe en vrai : `apply()` est appelé à chaque lancement de l'app.
         let context = TestData.makeContext()
         let defaultData = DefaultData(viewContext: context)
 
@@ -47,11 +56,14 @@ struct DefaultDataTests {
     }
 
     @Test func apply_whenAUserAlreadyExists_keepsItAndAttachesTheSessionsToIt() throws {
+        // Given : un utilisateur déjà présent, sans sommeil
         let context = TestData.makeContext()
         let existing = try TestData.addUser(in: context, firstName: "Eric", lastName: "Marcus")
 
+        // When
         try DefaultData(viewContext: context).apply()
 
+        // Then : pas de deuxième utilisateur, et les nuits sont rattachées à celui qui existait
         let sessions = try SleepRepository(viewContext: context).getSleepSessions()
         #expect(try context.count(for: User.fetchRequest()) == 1)
         #expect(try UserRepository(viewContext: context).getUser()?.firstName == "Eric")
@@ -60,18 +72,23 @@ struct DefaultDataTests {
     }
 
     @Test func apply_whenSleepSessionsAlreadyExist_doesNotAddAny() throws {
+        // Given : une seule nuit déjà présente
         let context = TestData.makeContext()
         let user = try TestData.addUser(in: context)
         try TestData.addSleep(in: context, startDate: Date(), user: user)
 
+        // When
         try DefaultData(viewContext: context).apply()
 
+        // Then : toujours une seule nuit, on ne complète pas jusqu'à 5
         #expect(try context.count(for: Sleep.fetchRequest()) == 1)
     }
 
     // MARK: - Intégration avec PersistenceController
 
     @Test func inMemoryController_startsWithAnEmptyDatabase() throws {
+        // Vérifie le `if !inMemory` de `PersistenceController` : sans lui, tous les tests
+        // qui supposent une base vide échoueraient.
         let context = PersistenceController(inMemory: true).container.viewContext
 
         #expect(try context.count(for: User.fetchRequest()) == 0)
@@ -79,6 +96,7 @@ struct DefaultDataTests {
     }
 
     @Test func previewController_containsTheDefaultData() throws {
+        // Les previews SwiftUI doivent, elles, avoir des données à afficher.
         let context = PersistenceController.preview.container.viewContext
 
         #expect(try UserRepository(viewContext: context).getUser() != nil)

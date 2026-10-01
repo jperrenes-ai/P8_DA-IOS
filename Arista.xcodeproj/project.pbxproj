@@ -36,6 +36,11 @@
 		BB169B9C306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B9B306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift */; };
 		BB169B9E306CFFE600763EE1 /* ExerciseListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B9D306CFFE600763EE1 /* ExerciseListViewModelTests.swift */; };
 		BB169BA0306CFFEC00763EE1 /* AddExerciseViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB169B9F306CFFEC00763EE1 /* AddExerciseViewModelTests.swift */; };
+		BB288A5B306E70770059DBA3 /* ExerciseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB288A5A306E70770059DBA3 /* ExerciseCategory.swift */; };
+		BB288A5D306E70860059DBA3 /* ExerciseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB288A5C306E70860059DBA3 /* ExerciseValidator.swift */; };
+		BB288A5F306E717F0059DBA3 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB288A5E306E717F0059DBA3 /* Components.swift */; };
+		BB288A61306E72730059DBA3 /* ExerciseValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB288A60306E72730059DBA3 /* ExerciseValidatorTests.swift */; };
+		BB288A63306E72780059DBA3 /* ExerciseCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB288A62306E72780059DBA3 /* ExerciseCategoryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +93,11 @@
 		BB169B9B306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepHistoryViewModelTests.swift; sourceTree = "<group>"; };
 		BB169B9D306CFFE600763EE1 /* ExerciseListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModelTests.swift; sourceTree = "<group>"; };
 		BB169B9F306CFFEC00763EE1 /* AddExerciseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModelTests.swift; sourceTree = "<group>"; };
+		BB288A5A306E70770059DBA3 /* ExerciseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCategory.swift; sourceTree = "<group>"; };
+		BB288A5C306E70860059DBA3 /* ExerciseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseValidator.swift; sourceTree = "<group>"; };
+		BB288A5E306E717F0059DBA3 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		BB288A60306E72730059DBA3 /* ExerciseValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseValidatorTests.swift; sourceTree = "<group>"; };
+		BB288A62306E72780059DBA3 /* ExerciseCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCategoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +180,8 @@
 				BB169B9B306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift */,
 				BB169B9D306CFFE600763EE1 /* ExerciseListViewModelTests.swift */,
 				BB169B9F306CFFEC00763EE1 /* AddExerciseViewModelTests.swift */,
+				BB288A60306E72730059DBA3 /* ExerciseValidatorTests.swift */,
+				BB288A62306E72780059DBA3 /* ExerciseCategoryTests.swift */,
 			);
 			path = AristaTests;
 			sourceTree = "<group>";
@@ -190,6 +202,8 @@
 				BB169B87306CF93A00763EE1 /* SleepRepository.swift */,
 				BB169B89306CF93F00763EE1 /* ExerciseRepository.swift */,
 				BB169B8B306CF94500763EE1 /* DefaultData.swift */,
+				BB288A5A306E70770059DBA3 /* ExerciseCategory.swift */,
+				BB288A5C306E70860059DBA3 /* ExerciseValidator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,6 +216,7 @@
 				53E587662B23600C00E4EF99 /* SleepHistoryView.swift */,
 				53E5876C2B236D9E00E4EF99 /* AddExerciseView.swift */,
 				BB169B8D306CFA4400763EE1 /* ErrorAlert.swift */,
+				BB288A5E306E717F0059DBA3 /* Components.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,10 +313,10 @@
 			};
 			buildConfigurationList = 53E587282B235E8F00E4EF99 /* Build configuration list for PBXProject "Arista" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = fr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				fr,
 				Base,
 			);
 			mainGroup = 53E587242B235E8F00E4EF99;
@@ -347,6 +362,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB288A5D306E70860059DBA3 /* ExerciseValidator.swift in Sources */,
+				BB288A5F306E717F0059DBA3 /* Components.swift in Sources */,
+				BB288A5B306E70770059DBA3 /* ExerciseCategory.swift in Sources */,
 				BB169B8C306CF94500763EE1 /* DefaultData.swift in Sources */,
 				53E5873A2B235E9000E4EF99 /* Persistence.swift in Sources */,
 				53E587712B23714800E4EF99 /* SleepHistoryViewModel.swift in Sources */,
@@ -370,11 +388,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB288A61306E72730059DBA3 /* ExerciseValidatorTests.swift in Sources */,
 				BB169B94306CFFBC00763EE1 /* SleepRepositoryTests.swift in Sources */,
 				BB169B9E306CFFE600763EE1 /* ExerciseListViewModelTests.swift in Sources */,
 				BB169B9C306CFFDC00763EE1 /* SleepHistoryViewModelTests.swift in Sources */,
 				BB169BA0306CFFEC00763EE1 /* AddExerciseViewModelTests.swift in Sources */,
 				BB169B96306CFFC600763EE1 /* ExerciseRepositoryTests.swift in Sources */,
+				BB288A63306E72780059DBA3 /* ExerciseCategoryTests.swift in Sources */,
 				BB169B92306CFFB700763EE1 /* UserRepositoryTests.swift in Sources */,
 				BB169B90306CFFB400763EE1 /* TestData.swift in Sources */,
 				BB169B98306CFFCE00763EE1 /* DefaultDataTests.swift in Sources */,
